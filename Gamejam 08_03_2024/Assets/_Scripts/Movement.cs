@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     Rigidbody rb;
-    [SerializeField]
-    float speed;
-
+    public float speed;
+    public float rotationSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,5 +34,9 @@ public class NewBehaviourScript : MonoBehaviour
             direction += new Vector3(1, 0, 0);
         }
         rb.velocity = direction * speed;
+
+        Quaternion newRot = Quaternion.identity;
+
+        rb.rotation = Quaternion.RotateTowards(rb.rotation, newRot, rotationSpeed);
     }
 }

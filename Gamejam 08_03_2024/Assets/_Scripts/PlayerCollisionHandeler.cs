@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerCollisionHandeler : MonoBehaviour
 {
+
+    PlayerHealthSystem healthSystem;
+    private void Start()
+    {
+        healthSystem = new PlayerHealthSystem();
+    }
     private void OnCollisionEnter(Collision collision)
     {
         HandleCollision(collision.collider);
@@ -18,6 +24,12 @@ public class PlayerCollisionHandeler : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Interactable>(out interactor))
         {
             interactor.Interact();
+        }
+
+        Enemy enemy;
+        if (collision.gameObject.TryGetComponent<Enemy>(out enemy))
+        {
+            healthSystem.TakeDamage(enemy.damage);
         }
     }
 }

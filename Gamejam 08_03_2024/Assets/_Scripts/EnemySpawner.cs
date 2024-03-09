@@ -9,7 +9,9 @@ public class EnemySpawner : MonoBehaviour
     public ObjectPool<Enemy> _pool;
 
     [SerializeField]
-    private Enemy enemy;
+    private Enemy fireEnemy;
+    [SerializeField]
+    private Enemy earthEnemy;
 
     private void Start()
     {
@@ -27,9 +29,21 @@ public class EnemySpawner : MonoBehaviour
 
     private Enemy createEnemy()
     {
-        Enemy newEnemy = Instantiate(enemy, new Vector3(Random.Range(-5f, 5), Random.Range(6f, 6), 0), Quaternion.identity);
-        newEnemy.setPool(_pool);
-        return newEnemy;
+        float randomChance = Random.Range(0.0f, 1.0f);
+        if (randomChance < 0.4f)
+        {
+            Enemy newEnemy = Instantiate(fireEnemy, new Vector3(Random.Range(-5f, 5), Random.Range(6f, 6), 0), Quaternion.identity);
+            newEnemy.setPool(_pool);
+            return newEnemy;
+        }
+        else
+        {
+            Enemy newEnemy = Instantiate(earthEnemy, new Vector3(Random.Range(-5f, 5), Random.Range(6f, 6), 0), Quaternion.identity);
+            newEnemy.setPool(_pool);
+            return newEnemy;
+        }
+
+        
     }
 
     private void onTakeEnemyFromPool(Enemy enemy)

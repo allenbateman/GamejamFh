@@ -6,20 +6,25 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 10;
     public float damage = 1;
-    Rigidbody rb;
-    // Start is called before the first frame update
+    Rigidbody rb;  
+    float destroytime = 2;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(transform.forward * speed, ForceMode.Impulse);
 
     }
-
-    // Update is called once per frame
     void Update()
     {
-        //stransform.Translate(transform.forward * speed * Time.deltaTime);
-        
+        destroytime -= Time.deltaTime;
+        if(destroytime < 0) 
+            Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+       // Destroy(gameObject);
     }
 
 }

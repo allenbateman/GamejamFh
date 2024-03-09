@@ -16,17 +16,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     PowerState normalState;
 
+    [SerializeField]
+    private SkinnedMeshRenderer meshRenderer;
+    [SerializeField]
+    Transform firePoint;
+
     private float stateTimer;
-    public void SetPower(PowerState state)
-    {
-        currentState = state;
-        stateTimer = state.duration;
-        Debug.Log("Set " + state.type.ToString());
-    }
+
     private void Start()
     {
         SetPower(normalState);
         playerMovement = GetComponent<Movement>();
+        if(meshRenderer == null )
+         meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     private void Update()
@@ -40,8 +42,7 @@ public class PlayerController : MonoBehaviour
         if(currentState.type != PowerTypes.None)
         {
             stateTimer -= Time.deltaTime;
-
-            if(stateTimer < 0)
+            if(stateTimer <= 0)
             {
                 SetPower(normalState);
             }
@@ -55,8 +56,18 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-
          GameObject instantiatedBullet = Instantiate(currentState.bullet, transform.position, transform.rotation);
+    }
 
+    public void SetPower(PowerState state)
+    {
+        currentState = state;
+        stateTimer = state.duration;
+
+        meshRenderer.material = currentState.skin;
+        Debug.Log("Current state " + state.type.ToString());
+
+        if (currentState.onPowerupParticles != null)
+            Instantiate(currentState.onPowerupParticles, firePoint.position, transform.rotation);
     }
 }

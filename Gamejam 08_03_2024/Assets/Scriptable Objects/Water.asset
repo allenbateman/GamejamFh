@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   type: 2
-  bullet: {fileID: 0}
+  bullet: {fileID: 4114271548931707105, guid: 678be06b419bd4045a6204254f4dc723, type: 3}
   duration: 5
   speedMultiplier: 1
-  skin: {fileID: 2100000, guid: 68cd948ca06014a44987a74a8f445f54, type: 2}
+  skin: {fileID: 2100000, guid: aa235b2a8b518954dbe2561b1cf9c653, type: 2}
   particles: {fileID: 0}
   onPowerupParticles: {fileID: 0}

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Earth
   m_EditorClassIdentifier: 
   type: 3
-  bullet: {fileID: 0}
+  bullet: {fileID: 3118583843995254926, guid: b5048f850b9bf8743ba77d205ccd292c, type: 3}
   duration: 5
   speedMultiplier: 1
-  skin: {fileID: 0}
+  skin: {fileID: 2100000, guid: 8bccb9c39071e4a4e9900af166a21753, type: 2}
   particles: {fileID: 0}
   onPowerupParticles: {fileID: 0}

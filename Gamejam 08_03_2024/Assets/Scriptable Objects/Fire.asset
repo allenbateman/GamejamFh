@@ -16,6 +16,6 @@ MonoBehaviour:
   bullet: {fileID: 2382686884695159625, guid: 7093127e3858441cda48f8a02399f946, type: 3}
   duration: 5
   speedMultiplier: 1
-  skin: {fileID: 0}
+  skin: {fileID: 2100000, guid: 2b7d43340ed987f43a9daddeb91e528b, type: 2}
   particles: {fileID: 0}
   onPowerupParticles: {fileID: 0}

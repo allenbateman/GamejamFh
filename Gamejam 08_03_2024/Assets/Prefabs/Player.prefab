@@ -116,7 +116,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c0fa344633747f9439041f9b0cc322de, type: 2}
+  - {fileID: 2100000, guid: 68cd948ca06014a44987a74a8f445f54, type: 2}
   - {fileID: 2100000, guid: f2203f80845a66e4ab859ec6b767fcde, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 8655908431536058947}
   - component: {fileID: 4725725441484219651}
   - component: {fileID: 9007079449161220042}
+  - component: {fileID: 2323057584690617156}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -184,7 +185,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5471096, y: -4.1300006, z: 2.8754363}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2696405022096573856}
@@ -253,7 +254,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.51
   rotationSpeed: 10
-  cam: {fileID: 0}
 --- !u!114 &4725725441484219651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +279,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &2323057584690617156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097735050962851308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9ea3e4f727cdd4fa05f51c4a87da3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerLists:
+  - type: 0
+    bullet: {fileID: 0}
+    playerSkin: {fileID: 0}
+    duration: 0
+    speedMultiplier: 0
+    damageMultiplier: 0
 --- !u!1 &2976510024047781175
 GameObject:
   m_ObjectHideFlags: 0

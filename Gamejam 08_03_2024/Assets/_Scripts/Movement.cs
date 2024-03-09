@@ -35,12 +35,9 @@ public class Movement : MonoBehaviour
         {
             direction += new Vector3(1, 0, 0);
         }
-
-
-
     }
 
-    Vector3 GetDirection()
+    void Aim()
     {
 
         Vector3 direction = Vector3.zero;
@@ -67,23 +64,12 @@ public class Movement : MonoBehaviour
 
             transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
         }
-
-        //
-
-
-        return direction;
     }
 
     private void FixedUpdate()
     {
         rb.velocity = direction.normalized * speed;
-        Vector3 lookDir = GetDirection();
-
-        if (lookDir != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(lookDir);
-            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
+        Aim();
     }
 
     private void OnDrawGizmos()

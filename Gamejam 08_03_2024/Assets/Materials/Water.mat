@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Water
-  m_Shader: {fileID: -6465566751694194690, guid: b1f02c18294660347b5677ed2e9b3412, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b1f02c18294660347b5677ed2e9b3412,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -56,19 +57,19 @@ Material:
     - _FoamSize: 90
     - _Intesity: 10.01
     - _MaxHeigth: 0.04
-    - _Metalic: 0.1
+    - _Metalic: 0.62
     - _NoiseSpeed: 0.1
     - _NoiseStrength: 0.1
-    - _NormalStrength: 0.2
+    - _NormalStrength: 0.07
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RippleIntesity: 10
     - _RippleScale: 6
-    - _RippleSpeed: 1.04
+    - _RippleSpeed: 3.23
     - _Scale: 11.23
-    - _SimpleNoiseStrength: 0.15
-    - _Smoothness: 0.42
+    - _SimpleNoiseStrength: 0.4
+    - _Smoothness: 0.98
     - _Speed: 1
     - _SrcBlend: 1
     - _Surface: 1
@@ -79,7 +80,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 0.2663314, g: 0.8962264, b: 0.8897249, a: 1}
-    - _DeepWater: {r: 0, g: 0.67505246, b: 0.754717, a: 1}
+    - _DeepWater: {r: 0, g: 0.67505246, b: 0.9529412, a: 1}
     - _DepthColor: {r: 0.026343895, g: 0.041918833, b: 0.1509434, a: 1}
     - _FoamColor: {r: 0.56470275, g: 0.84650797, b: 0.8490566, a: 1}
     - _FoamSpeed: {r: 0.01, g: -0.01, b: 0, a: 0}

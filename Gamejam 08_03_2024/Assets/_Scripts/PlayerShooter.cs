@@ -22,11 +22,8 @@ public class PlayerShooter : MonoBehaviour
     {
 
         Debug.Log("shoot");
-        GameObject instantiatedBullet = Instantiate(bullet, transform.position, transform.rotation);
-        
+        GameObject instantiatedBullet = Instantiate(bullet, transform.position, transform.rotation);      
 
         yield return new WaitForSeconds(fireDelay);
-        
-
     }
 }

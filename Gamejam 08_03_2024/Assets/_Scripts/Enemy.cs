@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = target.position - transform.position; 
         Quaternion newrot = Quaternion.LookRotation(dir);
         rb.rotation = Quaternion.RotateTowards(rb.rotation, newrot, Time.deltaTime * rotationSpeed);
     }

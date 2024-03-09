@@ -23,6 +23,11 @@ public class Enemy : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        health = 1;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -46,9 +51,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (health <= 0)
-        {
-            Debug.Log("Health: " + health);
+        if (health <= 1)
+        { 
             Debug.Log("enemy died");
 
             releaseEnemy();

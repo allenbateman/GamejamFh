@@ -23,12 +23,26 @@ public class PlayerController : MonoBehaviour
 
     private float stateTimer;
 
+    [SerializeField]
+    private Animator animator;
+
+    bool canShoot;
+    public float fireRate = 0.2f;
+    private float shootTimer;
+
     private void Start()
     {
+        canShoot = true;
+        
         SetPower(normalState);
+        
         playerMovement = GetComponent<Movement>();
+
         if(meshRenderer == null )
          meshRenderer = transform.GetComponentInChildren<SkinnedMeshRenderer>();
+        
+        if(animator == null)
+            animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -48,25 +62,37 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        shootTimer -= Time.deltaTime;   
+        if(shootTimer <= 0)
         {
-            Shoot();
+            shootTimer = 0;
+            if (Input.GetButtonDown("Fire1") && canShoot)
+            {
+                Shoot();
+                shootTimer = fireRate;
+            }
         }
+
     }
 
     void Shoot()
     {
          GameObject instantiatedBullet = Instantiate(currentState.bullet, transform.position, transform.rotation);
+         animator.SetTrigger("Attack");
     }
 
     public void SetPower(PowerState state)
     {
         currentState = state;
-        stateTimer = state.duration;
-
-        meshRenderer.material = currentState.skin;
         Debug.Log("Current state " + state.type.ToString());
-
+        canShoot = false;
+        animator.SetTrigger("Jump");
+    }
+    public void Transition()
+    {
+        canShoot = true;
+        meshRenderer.material = currentState.skin;
+        stateTimer = currentState.duration;
         if (currentState.onPowerupParticles != null)
             Instantiate(currentState.onPowerupParticles, firePoint.position, transform.rotation);
     }

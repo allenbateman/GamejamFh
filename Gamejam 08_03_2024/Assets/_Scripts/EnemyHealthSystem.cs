@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class EnemyHealthSystem : MonoBehaviour
 {
-    public float health;
+    public float health = 100;
+    Enemy enemy;
+    private void Start()
+    {
+        enemy = GetComponent<Enemy>();
+    }
+
 
     public void TakeDamage(float damage)
     {
         if(health <= 0)
         {
+            Debug.Log("Health: " + health);
             Debug.Log("enemy died");
-            return;
+            enemy.releaseEnemy();
+         
         }
         health -= damage;
     }

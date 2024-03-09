@@ -20,7 +20,6 @@ public class EnemyColisionHandler : MonoBehaviour
     }
     void HandleCollision(Collider collision)
     {
-
         Bullet bullet;
         if (collision.gameObject.TryGetComponent<Bullet>(out bullet))
         {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,11 +11,15 @@ public class Enemy : MonoBehaviour
     Rigidbody rb;
     public float damage;
 
+    private ObjectPool<Enemy> _pool;
+
+    EnemyHealthSystem EnemyHealthSystem;
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -26,4 +31,16 @@ public class Enemy : MonoBehaviour
         Quaternion newrot = Quaternion.LookRotation(dir);
         rb.rotation = Quaternion.RotateTowards(rb.rotation, newrot, Time.deltaTime * rotationSpeed);
     }
+
+    public void setPool(ObjectPool<Enemy> pool)
+    {
+        _pool = pool;
+    }
+
+    public void releaseEnemy()
+    {
+        _pool.Release(this);
+    }
+
+
 }

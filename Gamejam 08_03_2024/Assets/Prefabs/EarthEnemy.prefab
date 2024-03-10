@@ -1165,7 +1165,7 @@ Animator:
   m_GameObject: {fileID: 6459944040595117720}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1db38da97b6ad094dbca967f13dd370f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5ed4d8daf092f7445a9f8c99d0c85695, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7b588c3f79db84d74a4fd6c6466cbc62, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1193,6 +1193,7 @@ MonoBehaviour:
   rotationSpeed: 5
   damage: 1
   health: 1
+  power: 0
 --- !u!54 &8547730708741197189
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1218,7 +1219,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &5008485471480107267
 BoxCollider:

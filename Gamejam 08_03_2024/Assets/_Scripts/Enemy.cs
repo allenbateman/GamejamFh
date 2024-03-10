@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     public float damage;
     public float health;
 
+    public PowerTypes power;
+
     private ObjectPool<Enemy> _pool;
 
     EnemyHealthSystem EnemyHealthSystem;
@@ -76,7 +78,82 @@ public class Enemy : MonoBehaviour
         Bullet bullet;
         if (collision.gameObject.TryGetComponent<Bullet>(out bullet))
         {
-            TakeDamage(bullet.damage);
+
+            switch(bullet.powerType)
+            {
+                case PowerTypes.None:
+                    TakeDamage(bullet.damage);
+                    break;
+
+                //bullet
+                case PowerTypes.Fire:
+                    //enemy
+                    switch (power)
+                    {
+                        case PowerTypes.None:
+                            TakeDamage(bullet.damage);
+                            break;
+
+                        case PowerTypes.Fire:
+                            TakeDamage(bullet.damage);
+                            break;
+
+                        case PowerTypes.Water:
+                            TakeDamage(bullet.damage * bullet.damageMultiplier);
+                            break;
+
+                        case PowerTypes.Earth:
+                            //no damage
+                            break;
+                    }
+                    break;
+
+                //bullet
+                case PowerTypes.Water:
+                    //enemy
+                    switch (power)
+                    {
+                        case PowerTypes.None:
+                            TakeDamage(bullet.damage);
+                            break;
+
+                        case PowerTypes.Fire:
+                            //no damage
+                            break;
+
+                        case PowerTypes.Water:
+                            TakeDamage(bullet.damage);
+                            break;
+
+                        case PowerTypes.Earth:
+                            TakeDamage(bullet.damage* bullet.damageMultiplier);
+                            break;
+                    }
+                    break;
+                //bullet
+                case PowerTypes.Earth:
+
+                    //enemy
+                    switch (power)
+                    {
+                        case PowerTypes.None:
+                            TakeDamage(bullet.damage);
+                            break;
+
+                        case PowerTypes.Fire:
+                            TakeDamage(bullet.damage * bullet.damageMultiplier);
+                            break;
+
+                        case PowerTypes.Water:
+                            //no damage
+                            break;
+
+                        case PowerTypes.Earth:
+                            TakeDamage(bullet.damage);
+                            break;
+                    }
+                    break;
+            }
         }
     }
 

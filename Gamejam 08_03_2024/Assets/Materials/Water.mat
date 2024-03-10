@@ -80,7 +80,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 0.2663314, g: 0.8962264, b: 0.8897249, a: 1}
-    - _DeepWater: {r: 0, g: 0.67505246, b: 0.9529412, a: 1}
+    - _DeepWater: {r: 0, g: 0.07304217, b: 0.9529412, a: 1}
     - _DepthColor: {r: 0.026343895, g: 0.041918833, b: 0.1509434, a: 1}
     - _FoamColor: {r: 0.56470275, g: 0.84650797, b: 0.8490566, a: 1}
     - _FoamSpeed: {r: 0.01, g: -0.01, b: 0, a: 0}

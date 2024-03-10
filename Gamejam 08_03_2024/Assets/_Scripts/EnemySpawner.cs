@@ -12,6 +12,8 @@ public class EnemySpawner : MonoBehaviour
     private Enemy fireEnemy;
     [SerializeField]
     private Enemy earthEnemy;
+    [SerializeField]
+    private Enemy waterEnemy;
 
     private void Start()
     {
@@ -30,15 +32,21 @@ public class EnemySpawner : MonoBehaviour
     private Enemy createEnemy()
     {
         float randomChance = Random.Range(0.0f, 1.0f);
-        if (randomChance < 0.4f)
+        if (randomChance < 0.33f)
         {
             Enemy newEnemy = Instantiate(fireEnemy, new Vector3(Random.Range(-5f, 5), Random.Range(6f, 6), 0), Quaternion.identity);
             newEnemy.setPool(_pool);
             return newEnemy;
         }
-        else
+        else if(randomChance < 0.66f)
         {
             Enemy newEnemy = Instantiate(earthEnemy, new Vector3(Random.Range(-5f, 5), Random.Range(6f, 6), 0), Quaternion.identity);
+            newEnemy.setPool(_pool);
+            return newEnemy;
+        }
+        else
+        {
+            Enemy newEnemy = Instantiate(waterEnemy, new Vector3(Random.Range(-5f, 5), Random.Range(6f, 6), 0), Quaternion.identity);
             newEnemy.setPool(_pool);
             return newEnemy;
         }

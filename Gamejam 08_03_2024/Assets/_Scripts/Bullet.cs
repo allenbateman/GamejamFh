@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     public float damage = 1;
     Rigidbody rb;  
     float destroytime = 2;
+    public PowerTypes powerType = PowerTypes.None;
+    public float damageMultiplier = 1.5f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();

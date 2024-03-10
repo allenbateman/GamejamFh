@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-         GameObject instantiatedBullet = Instantiate(currentState.bullet, transform.position, transform.rotation);
+         GameObject instantiatedBullet = Instantiate(currentState.bullet, firePoint.position, transform.rotation);
          animator.SetTrigger("Attack");
     }
 

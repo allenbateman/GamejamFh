@@ -94,6 +94,6 @@ public class PlayerController : MonoBehaviour
         meshRenderer.material = currentState.skin;
         stateTimer = currentState.duration;
         if (currentState.onPowerupParticles != null)
-            Instantiate(currentState.onPowerupParticles, firePoint.position, transform.rotation);
+            Instantiate(currentState.onPowerupParticles, transform.position + new Vector3(0,1,0), transform.rotation);
     }
 }

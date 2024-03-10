@@ -1189,8 +1189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 4
-  rotationSpeed: 80
+  speed: 3
+  rotationSpeed: 5
   damage: 1
   health: 1
   power: 0

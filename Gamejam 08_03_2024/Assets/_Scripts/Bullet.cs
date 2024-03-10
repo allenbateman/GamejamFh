@@ -4,40 +4,29 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public enum BulletState {Water, Fire, Stone};
-
-
-    BulletState bulletState;
     public float speed = 10;
     public float damage = 1;
-    public float destroyTime = 3;
-    Rigidbody rb;
-    // Start is called before the first frame update
+    Rigidbody rb;  
+    float destroytime = 2;
+    public PowerTypes powerType = PowerTypes.None;
+    public float damageMultiplier = 1.5f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * speed, ForceMode.Impulse);
-        Destroy(gameObject, destroyTime);
+        GetComponent<Rigidbody>().AddForce(transform.forward * speed, ForceMode.Impulse);
 
     }
-
-    // Update is called once per frame
     void Update()
     {
-        //stransform.Translate(transform.forward * speed * Time.deltaTime);
-        
+        destroytime -= Time.deltaTime;
+        if(destroytime < 0) 
+            Destroy(gameObject);
     }
 
-    public void destroy()
+    private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject, 0.5f);
-        
+       // Destroy(gameObject);
     }
 
-    public void setBulletState(BulletState bulletState)
-    {
-        this.bulletState = bulletState;
-    }
 }
-
-

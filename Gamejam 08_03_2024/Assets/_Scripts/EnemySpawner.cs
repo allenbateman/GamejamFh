@@ -5,7 +5,10 @@ using UnityEngine.Pool;
 
 public class EnemySpawner : MonoBehaviour
 {
+
+    public int startEnemyCount;
     public float enemyInterval = 3.5f;
+    float timer;
     public ObjectPool<Enemy> _pool;
 
     [SerializeField]
@@ -15,82 +18,31 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private Enemy waterEnemy;
 
+
+    [SerializeField]
+    private List<Transform> spawnPoints = new List<Transform>();
+    [SerializeField]
+    private List<GameObject> enemyTypes= new List<GameObject>();
+
     private void Start()
     {
-        _pool = new ObjectPool<Enemy>(createEnemy, onTakeEnemyFromPool, onReturnEnemyToPool, onDestroyEnemy, true, 15, 30);
-        StartCoroutine(spwanEnemy(enemyInterval));
+        timer = enemyInterval;
     }
 
-    private IEnumerator spwanEnemy(float interval)
+    private void Update()
     {
-        yield return new WaitForSeconds(interval);
-        _pool.Get();
-        StartCoroutine(spwanEnemy(interval));
-    }
-
-
-    private Enemy createEnemy()
-    {
-        float randomChance = Random.Range(0.0f, 1.0f);
-        if (randomChance < 0.33f)
+        timer-= Time.deltaTime;
+        if(timer < 0)
         {
-            Enemy newEnemy = Instantiate(fireEnemy, new Vector3(Random.Range(-5f, 5), Random.Range(6f, 6), 0), Quaternion.identity);
-            newEnemy.setPool(_pool);
-            return newEnemy;
+            int r = Random.Range(0, spawnPoints.Count);
+            SpawnEnemy(spawnPoints[r].position);
+            timer = enemyInterval;
         }
-        else if(randomChance < 0.66f)
-        {
-            Enemy newEnemy = Instantiate(earthEnemy, new Vector3(Random.Range(-5f, 5), Random.Range(6f, 6), 0), Quaternion.identity);
-            newEnemy.setPool(_pool);
-            return newEnemy;
-        }
-        else
-        {
-            Enemy newEnemy = Instantiate(waterEnemy, new Vector3(Random.Range(-5f, 5), Random.Range(6f, 6), 0), Quaternion.identity);
-            newEnemy.setPool(_pool);
-            return newEnemy;
-        }
-
-        
     }
-
-    private void onTakeEnemyFromPool(Enemy enemy)
+    void SpawnEnemy(Vector3 position)
     {
-        enemy.transform.position = new Vector3(Random.Range(-5f, 5), Random.Range(6f, 6), 0);
-        enemy.transform.rotation = Quaternion.identity;
-
-        enemy.gameObject.SetActive(true);
-    }
-
-    private void onReturnEnemyToPool(Enemy enemy)
-    {
-        enemy.gameObject.SetActive(false);
-    }
-
-    private void onDestroyEnemy(Enemy enemy)
-    {
-        Destroy(enemy.gameObject);
+        int e = Random.Range(0, enemyTypes.Count);
+        Instantiate(enemyTypes[e], position, Quaternion.identity);
     }
 
 }
-
-
-
-
-//[SerializeField]
-//private GameObject enemy;
-
-//public float enemyInterval = 3.5f;
-
-//// Start is called before the first frame update
-//void Start()
-//{
-//    StartCoroutine(spwanEnemy(enemyInterval, enemy));
-//}
-
-//private IEnumerator spwanEnemy(float interval, GameObject gameObject)
-//{
-//    yield return new WaitForSeconds(interval);
-//    GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-5f, 5), Random.Range(6f, 6), 0), Quaternion.identity);
-//    StartCoroutine(spwanEnemy(interval, enemy));
-//}

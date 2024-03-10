@@ -10,6 +10,10 @@ public class Bullet : MonoBehaviour
     float destroytime = 2;
     public PowerTypes powerType = PowerTypes.None;
     public float damageMultiplier = 1.5f;
+
+
+    [SerializeField]
+    GameObject vfxHit;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -26,7 +30,27 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-       // Destroy(gameObject);
+       Enemy enemy;
+       if(collision.gameObject.TryGetComponent<Enemy>(out enemy))
+       {
+            if(vfxHit != null)
+            {
+                Instantiate(vfxHit,transform.position, Quaternion.identity);    
+            }
+            Destroy(gameObject);
+       }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Enemy enemy;
+        if (other.gameObject.TryGetComponent<Enemy>(out enemy))
+        {
+            if (vfxHit != null)
+            {
+                Instantiate(vfxHit, transform.position, Quaternion.identity);
+            }
+            Destroy(gameObject);
+        }
     }
 
 }

@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
 
     private ObjectPool<Enemy> _pool;
 
+    EnemySpawner spawner;
+
     EnemyHealthSystem EnemyHealthSystem;
     // Start is called before the first frame update
     void Start()
@@ -27,44 +29,36 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        health = 1;
+        health = 10;
     }
-
-    // Update is called once per frame
     void Update()
     {
+
+        if (target == null) return;
+
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
-        Vector3 dir = target.position - transform.position; 
-        Quaternion newrot = Quaternion.LookRotation(dir);
-        rb.rotation = Quaternion.RotateTowards(rb.rotation, newrot, Time.deltaTime * rotationSpeed);
+        Vector3 dir = target.position - transform.position;
+        transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
     }
-
-    public void setPool(ObjectPool<Enemy> pool)
-    {
-        _pool = pool;
-    }
-
-    public void releaseEnemy()
-    {
-        _pool.Release(this);
-    }
-
 
     public void TakeDamage(float damage)
     {
-        if (health <= 1)
+        health -= damage;
+        if (health <= 0)
         { 
             Debug.Log("enemy died");
-
-            releaseEnemy();
+            Destroy(gameObject);
 
         }
-        health -= damage;
+
         Debug.Log("Health: " + health);
     }
 
 
+ 
     private void OnCollisionEnter(Collision collision)
     {
         HandleCollision(collision.collider);

@@ -4964,8 +4964,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 35
-  damage: 5
-  powerType: 0
+  damage: 4
+  powerType: 3
   damageMultiplier: 1.5
   vfxHit: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
 --- !u!54 &5661173979590148275

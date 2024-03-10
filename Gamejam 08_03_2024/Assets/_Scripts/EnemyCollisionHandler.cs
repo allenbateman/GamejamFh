@@ -23,7 +23,7 @@ public class EnemyColisionHandler : MonoBehaviour
         Bullet bullet;
         if (collision.gameObject.TryGetComponent<Bullet>(out bullet))
         {
-            EnemyhealthSystem.TakeDamage(bullet.damage);
+            //EnemyhealthSystem.TakeDamage(bullet.damage);
         }
     }
 }

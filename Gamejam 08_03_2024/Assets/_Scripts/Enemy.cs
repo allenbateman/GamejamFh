@@ -12,9 +12,10 @@ public class Enemy : MonoBehaviour
     public float damage;
     public float health;
 
-    public PowerTypes power;
+    [SerializeField] 
+    GameObject deathVfx;
 
-    private ObjectPool<Enemy> _pool;
+    public PowerTypes power;
 
     EnemySpawner spawner;
 
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = GameObject.FindGameObjectWithTag("Carrot").GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
         
     }
@@ -49,12 +50,8 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         { 
-            Debug.Log("enemy died");
             Destroy(gameObject);
-
         }
-
-        Debug.Log("Health: " + health);
     }
 
 
@@ -69,10 +66,21 @@ public class Enemy : MonoBehaviour
     }
     void HandleCollision(Collider collision)
     {
+        CarrotSystem carrotSystem;
+        if(collision.gameObject.TryGetComponent<CarrotSystem>(out carrotSystem))
+        {
+            Instantiate(deathVfx, transform.position + new Vector3(0,1,0),Quaternion.identity);
+            Destroy(gameObject);
+        }
+
+
+
+
         Bullet bullet;
         if (collision.gameObject.TryGetComponent<Bullet>(out bullet))
         {
 
+            Debug.Log("bullet type: " + bullet.powerType);
             switch(bullet.powerType)
             {
                 case PowerTypes.None:
@@ -86,7 +94,7 @@ public class Enemy : MonoBehaviour
                     {
                         case PowerTypes.None:
                             TakeDamage(bullet.damage);
-                            break;
+                        break;
 
                         case PowerTypes.Fire:
                             TakeDamage(bullet.damage);
@@ -97,7 +105,8 @@ public class Enemy : MonoBehaviour
                             break;
 
                         case PowerTypes.Earth:
-                            //no damage
+
+                            Debug.Log("No damage");
                             break;
                     }
                     break;
@@ -112,7 +121,7 @@ public class Enemy : MonoBehaviour
                             break;
 
                         case PowerTypes.Fire:
-                            //no damage
+                            Debug.Log("No damage");
                             break;
 
                         case PowerTypes.Water:
@@ -139,7 +148,7 @@ public class Enemy : MonoBehaviour
                             break;
 
                         case PowerTypes.Water:
-                            //no damage
+                            Debug.Log("No damage");
                             break;
 
                         case PowerTypes.Earth:

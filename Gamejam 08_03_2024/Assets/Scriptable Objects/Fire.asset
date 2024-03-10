@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Fire
   m_EditorClassIdentifier: 
   type: 1
-  bullet: {fileID: 4389955347534811731, guid: 7093127e3858441cda48f8a02399f946, type: 3}
+  bullet: {fileID: 4389955347534811731, guid: 48dda62e258ee594d9a9e80db88eb83c, type: 3}
+  bulletSound: {fileID: 8300000, guid: ae8ce650f55fe47b48ec831eb0caac20, type: 3}
   duration: 5
   speedMultiplier: 1
   skin: {fileID: 2100000, guid: 2b7d43340ed987f43a9daddeb91e528b, type: 2}

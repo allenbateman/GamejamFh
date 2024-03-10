@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   bullet: {fileID: 4114271548931707105, guid: 678be06b419bd4045a6204254f4dc723, type: 3}
+  bulletSound: {fileID: 8300000, guid: 49043a1f9446d46b48aafc9a9d0a6965, type: 3}
   duration: 5
   speedMultiplier: 1
   skin: {fileID: 2100000, guid: aa235b2a8b518954dbe2561b1cf9c653, type: 2}

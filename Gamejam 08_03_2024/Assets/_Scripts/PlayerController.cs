@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     PowerState normalState;
 
+    private AudioSource audioSource;
+
     [SerializeField]
     private SkinnedMeshRenderer meshRenderer;
     [SerializeField]
@@ -32,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         canShoot = true;
         
         SetPower(normalState);
@@ -77,8 +81,10 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-         GameObject instantiatedBullet = Instantiate(currentState.bullet, firePoint.position, transform.rotation);
-         animator.SetTrigger("Attack");
+        GameObject instantiatedBullet = Instantiate(currentState.bullet, firePoint.position, transform.rotation);
+        animator.SetTrigger("Attack");
+        audioSource.clip = currentState.bulletSound;
+        audioSource.Play(); 
     }
 
     public void SetPower(PowerState state)

@@ -7,6 +7,7 @@ public class PowerState : ScriptableObject
 {
     public PowerTypes type;
     public GameObject bullet;
+    public AudioClip bulletSound;
     public float duration;
     public float speedMultiplier;
 
